@@ -50,6 +50,19 @@ public class PathSumIII {
         return helper(root, 0, sum, preSum);
     }
 
+    /**
+     * 用hash表记录当前遍历路径中的子路径权值和对应出现的次数。
+     *
+     * 若sum为从根节点到某x节点的路径权值和，则遍历至节点x时，当前的路径和curSum恰好与sum相等，则res = m[curSum - sum] = m[0] = 1;
+     * 若sum为某段子路径权值和，如：x1->x2->x3->x4......中sum等于节点x3与节点x4的权值和，即sum = sumx3+x4。
+     * 则遍历至x2时， m[curSum]++; 处已经记录了m[curSum] = m[sumx1+x2] = 1,
+     * 遍历至x4时curSum = sumx1+x2+x3+x4,则res = m[curSum - sum] = m[sumx1+x2+x3+x4 - sumx3+x4] = m[sumx1+x2] = 1。
+     * @param root
+     * @param currSum
+     * @param target
+     * @param preSum
+     * @return
+     */
     private static int helper(TreeNode root, int currSum, int target, HashMap<Integer, Integer> preSum) {
         if (root == null) {
             return 0;
@@ -63,4 +76,27 @@ public class PathSumIII {
         preSum.put(currSum, preSum.get(currSum) - 1);
         return res;
     }
+
+
+    public static int pathSum1(TreeNode root, int sum) {
+        if (root == null) {
+            return 0;
+        }
+        return findPath(root, sum) + pathSum1(root.left, sum) + pathSum1(root.right, sum);
+    }
+
+    public static int findPath(TreeNode root, int sum){
+        int res = 0;
+        if (root == null) {
+            return res;
+        }
+        if (root.val == sum) {
+            res++;
+        }
+
+        res += findPath(root.left, sum - root.val);
+        res += findPath(root.right, sum - root.val);
+        return res;
+    }
+
 }
