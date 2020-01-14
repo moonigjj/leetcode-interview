@@ -4,7 +4,9 @@
 package fastfilter.bloom.count;
 
 /**
- *
+ *A select implementation with guaranteed O(1) query time. This is a copy of
+ *  * the (very good) implementation in Sux4J it.unimi.dsi.sux4j.bits.SimpleSelect
+ *  * by Sebastiano Vigna (see copyright), with a custom serialization format.
  * @author tangyue
  * @version $Id: Select.java, v 0.1 2020-01-09 10:55 tangyue Exp $$
  */
