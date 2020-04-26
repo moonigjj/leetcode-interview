@@ -3,6 +3,8 @@
  */
 package leetcode.easy;
 
+import java.util.Arrays;
+
 /**
  *443. String Compression
  * Given an array of characters, compress it in-place.
@@ -35,10 +37,38 @@ public class StringCompression {
 
     public static void main(String[] args) {
 
+        char[] chars = new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
+        System.out.println(compress(chars));
+        System.out.println(compress(new char[]{'a'}));
     }
 
+    /**
+     * 快慢指针，值不相等，slow变成fast值
+     * @param chars
+     * @return
+     */
     public static int compress(char[] chars) {
-
-        return 0;
+        int len = chars.length;
+        int slow = 0;
+        int fast = 0;
+        while (fast < len){
+            int count = 0;
+            char cur = chars[fast];
+            // 快指针长度小于数组长度，并且
+            while (fast < len && cur == chars[fast]){
+                count++;
+                fast++;
+            }
+            //相等的快指针的值赋给慢指针
+            chars[slow++] = cur;
+            // 数字重新赋值，慢指针向前
+            if (count != 1){
+                for (char c : Integer.toString(count).toCharArray()){
+                    chars[slow++] = c;
+                }
+            }
+        }
+        return slow;
     }
+
 }
