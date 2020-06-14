@@ -1,5 +1,7 @@
 package leetcode.easy;
 
+import java.util.Arrays;
+
 /**
  * 455. Assign Cookies
  * Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie j has a size sj. If sj >= gi, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.
@@ -28,13 +30,31 @@ package leetcode.easy;
 public class AssignCookies {
 
     public static void main(String[] args) {
-
+        int[] g = new int[]{1, 2};
+        int[] s = new int[]{1,2,3};
+        System.out.println(findContentChildren(g, s));
     }
 
+    /**
+     * 首先满足饥饿指数小的小朋友，先对两条数组排序，
+     * 然后依次从前往后遍历，数能够满足的数量，返回这个值。
+     * @param g 小朋友
+     * @param s 饼干
+     * @return
+     */
     public static int findContentChildren(int[] g, int[] s) {
         int len = g.length;
-
-
-        return len;
+        int c = s.length;
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int i = 0;
+        int j = 0;
+        while (i < len && j < c){
+            if (g[i] <= s[j]){
+                i++;
+            }
+            j++;
+        }
+        return i;
     }
 }
