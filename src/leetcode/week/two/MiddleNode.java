@@ -31,6 +31,11 @@ public class MiddleNode {
         ListNode.print(middleNode(head));
     }
 
+    /**
+     * 快慢指针
+     * @param head
+     * @return
+     */
     public static ListNode middleNode(ListNode head) {
         if (head == null || head.next == null){
             return head;
