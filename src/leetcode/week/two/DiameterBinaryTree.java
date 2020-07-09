@@ -21,23 +21,24 @@ import structure.TreeNode;
  */
 public class DiameterBinaryTree {
 
+    private static int maxDeep = 0;
     public static void main(String[] args) {
 
     }
 
     public static int diameterOfBinaryTree(TreeNode root) {
 
-        int maxDeep = 0;
-        maxDeep(root, maxDeep);
+        //int maxDeep = 0;
+        maxDeep(root);
         return maxDeep;
     }
 
-    private static int maxDeep(TreeNode root, int maxDeep){
+    private static int maxDeep(TreeNode root){
         if (root == null){
             return 0;
         }
-        int left = maxDeep(root.left, maxDeep);
-        int right = maxDeep(root.right, maxDeep);
+        int left = maxDeep(root.left);
+        int right = maxDeep(root.right);
         maxDeep = Math.max(maxDeep, left + right);
         return Math.max(left, right) + 1;
     }
