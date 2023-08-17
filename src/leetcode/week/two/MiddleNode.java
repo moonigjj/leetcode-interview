@@ -1,8 +1,7 @@
 package leetcode.week.two;
 
-import com.sun.jmx.snmp.SnmpNull;
-import structure.ListNode;
 
+import structure.ListNode;
 /**
  * Given a non-empty, singly linked list with head node head, return a middle node of linked list.
  *
